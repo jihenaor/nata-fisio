@@ -1,0 +1,11 @@
+{
+  "name": "nata-fisio",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "vercel-build": "echo 'Using Vercel serverless functions'"
+  },
+  "dependencies": {
+    "@vercel/postgres": "^0.8.0"
+  }
+}

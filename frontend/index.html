@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nata Fisio - Gestión de terapias</title>
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Nata Fisio</h1>
+      <p>Agenda y seguimiento de terapias de rehabilitación</p>
+    </header>
+
+    <main>
+      <section class="card">
+        <h2>Registrar paciente</h2>
+        <form id="patient-form">
+          <div class="form-group">
+            <label for="patient-name">Nombre completo</label>
+            <input id="patient-name" name="full_name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="patient-email">Correo electrónico</label>
+            <input id="patient-email" name="email" type="email" />
+          </div>
+          <div class="form-group">
+            <label for="patient-phone">Teléfono</label>
+            <input id="patient-phone" name="phone_number" type="tel" />
+          </div>
+          <div class="form-group">
+            <label for="patient-notes">Notas</label>
+            <textarea id="patient-notes" name="notes" rows="2"></textarea>
+          </div>
+          <button type="submit">Guardar paciente</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Agendar terapia</h2>
+        <form id="session-form">
+          <div class="form-group">
+            <label for="session-patient">Paciente</label>
+            <select id="session-patient" name="patient_id" required></select>
+          </div>
+          <div class="form-group">
+            <label for="session-date">Fecha y hora</label>
+            <input id="session-date" name="scheduled_at" type="datetime-local" required />
+          </div>
+          <div class="form-group">
+            <label for="session-duration">Duración (minutos)</label>
+            <input id="session-duration" name="duration_minutes" type="number" min="15" max="240" value="60" required />
+          </div>
+          <div class="form-group">
+            <label for="session-type">Tipo de terapia</label>
+            <input id="session-type" name="therapy_type" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="session-therapist">Fisioterapeuta</label>
+            <input id="session-therapist" name="therapist_name" type="text" required />
+          </div>
+          <div class="form-group">
+            <label for="session-amount">Valor a cobrar</label>
+            <input id="session-amount" name="payment_amount" type="number" min="0" step="0.01" required />
+          </div>
+          <div class="form-group">
+            <label for="session-method">Método de pago</label>
+            <input id="session-method" name="payment_method" type="text" placeholder="Efectivo, transferencia..." />
+          </div>
+          <div class="form-group">
+            <label for="session-notes">Notas</label>
+            <textarea id="session-notes" name="notes" rows="2"></textarea>
+          </div>
+          <button type="submit">Crear sesión</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <h2>Confirmación de pacientes</h2>
+        <form id="confirm-form">
+          <div class="form-group">
+            <label for="confirm-session">Código de sesión</label>
+            <input id="confirm-session" name="session_id" type="number" required />
+          </div>
+          <div class="form-group">
+            <label for="confirm-status">Estado</label>
+            <select id="confirm-status" name="confirmation_status">
+              <option value="confirmed">Asistí a la cita</option>
+              <option value="cancelled">No podré asistir</option>
+              <option value="no_show">No asistí</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="confirm-notes">Notas</label>
+            <textarea id="confirm-notes" name="notes" rows="2"></textarea>
+          </div>
+          <button type="submit">Enviar confirmación</button>
+        </form>
+      </section>
+
+      <section class="card">
+        <div class="list-header">
+          <h2>Próximas sesiones</h2>
+          <button id="refresh-sessions" type="button">Actualizar</button>
+        </div>
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Paciente</th>
+              <th>Fecha</th>
+              <th>Estado</th>
+              <th>Confirmación</th>
+              <th>Pago</th>
+              <th>Monto</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody id="sessions-body"></tbody>
+        </table>
+      </section>
+    </main>
+
+    <div id="toast" class="toast" role="status"></div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

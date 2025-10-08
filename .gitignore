@@ -1,0 +1,11 @@
+node_modules/
+.vercel/
+.env*
+
+# Legacy Python artifacts (por si decides reusar el backend anterior)
+__pycache__/
+*.py[cod]
+*.sqlite3
+*.db
+.venv/
+backend/data/
